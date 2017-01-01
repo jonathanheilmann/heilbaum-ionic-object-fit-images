@@ -1,0 +1,6 @@
+node_modules/
+dist/
+aot/
+
+.idea/
+.idea/vcs.xml
