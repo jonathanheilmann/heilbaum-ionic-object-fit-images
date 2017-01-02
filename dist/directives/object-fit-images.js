@@ -5,7 +5,6 @@ export var ObjectFitImagesDirective = (function () {
         this.renderer = renderer;
     }
     ObjectFitImagesDirective.prototype.ngAfterViewInit = function () {
-        console.log(this.objectFit);
         var objectFit = this.objectFit || 'fill';
         var objectPosition = this.objectPosition;
         var settings = { watchMQ: !!this.objectFitWatchMQ };
