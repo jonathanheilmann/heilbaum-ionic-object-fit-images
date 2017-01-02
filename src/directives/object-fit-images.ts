@@ -16,7 +16,6 @@ export class ObjectFitImagesDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.objectFit);
     let objectFit = this.objectFit || 'fill';
     let objectPosition = this.objectPosition;
     let settings = { watchMQ: !!this.objectFitWatchMQ };
