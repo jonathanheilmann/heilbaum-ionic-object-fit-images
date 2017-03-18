@@ -1,5 +1,14 @@
-node_modules/
-aot/
+# Node generated files
+node_modules
+npm-debug.log
+yarn.lock
 
-.idea/
-.idea/vcs.xml
+dist
+aot
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# WebStorm generated files
+.idea
