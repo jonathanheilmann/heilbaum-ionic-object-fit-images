@@ -1,6 +1,6 @@
 {
   "name": "heilbaum-ionic-object-fit-images",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ionic 2 directive to provide an object-fit CSS polyfill",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
