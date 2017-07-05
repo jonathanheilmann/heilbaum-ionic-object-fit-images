@@ -45,6 +45,6 @@
     "zone.js": "0.7.2"
   },
   "dependencies": {
-    "object-fit-images": "^2.5.9"
+    "object-fit-images": "^3.2.3"
   }
 }
