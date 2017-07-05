@@ -1,4 +1,5 @@
-import { Directive, ElementRef, Renderer, Input, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Input, AfterViewInit } from '@angular/core';
+import objectFitImages from 'object-fit-images';
 
 @Directive({
   selector: '[object-fit]'
@@ -10,8 +11,8 @@ export class ObjectFitImagesDirective implements AfterViewInit {
   @Input('object-position') objectPosition: string;
 
   constructor(
-      private el: ElementRef,
-      private renderer: Renderer
+    private el: ElementRef,
+    private renderer: Renderer2
   ) {
   }
 
@@ -21,20 +22,27 @@ export class ObjectFitImagesDirective implements AfterViewInit {
     let settings = { watchMQ: !!this.objectFitWatchMQ };
 
     // Apply object-fit property and value
-    this.renderer.setElementStyle(this.el.nativeElement, 'object-fit', objectFit);
+    this.renderer.setStyle(this.el.nativeElement, 'object-fit', objectFit);
     let fontFamily = 'object-fit: ' + objectFit + ';';
 
     if (objectPosition) {
       // Apply object-position property and value
-      this.renderer.setElementStyle(this.el.nativeElement, 'object-position', objectPosition);
+      this.renderer.setStyle(this.el.nativeElement, 'object-position', objectPosition);
       fontFamily += ' object-position: ' + objectPosition + ';'
     }
 
     // Apply font-family property and value
-    this.renderer.setElementStyle(this.el.nativeElement, 'font-family', fontFamily);
+    // Requires to fetch actual font-family to apply the new one to element
+    const computedStyles = window.getComputedStyle(this.el.nativeElement);
+    const computedFontFamily = computedStyles.hasOwnProperty('font-family') ? computedStyles['font-family'] : '';
+
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      'font-family',
+      '"' + fontFamily + '"' + (computedFontFamily ? ', ' + computedFontFamily : '')
+    );
 
     // Apply polyfill to element
-    let objectFitImages = require('object-fit-images').default;
     objectFitImages(this.el.nativeElement, settings);
   }
 
